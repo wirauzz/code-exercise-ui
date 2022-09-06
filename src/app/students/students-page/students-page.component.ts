@@ -25,3 +25,37 @@ export class StudentsPageComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(StudentActions.loadStudents());
   }
+
+  onSelect(Student: Student) {
+    this.store.dispatch(StudentActions.selectStudent({student: Student}));
+  }
+
+  onDelete(Student: Student) {
+    this.store.dispatch(StudentActions.removeStudent({studentId: Student.studentId}));
+  }
+
+  removeSelectedStudent() {
+    this.store.dispatch(StudentActions.clearSelectedStudent())
+  }
+
+  onCancel() {
+    this.removeSelectedStudent();
+  }
+
+  onSave(Student: Student) {
+    if('studentId' in Student) {
+      this.updateStudent(Student);
+    } else {
+      this.saveStudent(Student);
+    }
+  }
+
+  saveStudent(Student: Student) {
+    this.store.dispatch(StudentActions.createStudent({newStudent: Student}));
+  }
+
+  updateStudent(Student: Student) {
+    this.store.dispatch(StudentActions.editStudent({student: Student}));
+  }
+
+}

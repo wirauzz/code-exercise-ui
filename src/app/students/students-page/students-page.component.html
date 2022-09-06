@@ -6,4 +6,10 @@
         (delete)="onDelete($event)">
         </app-students-table>
     </div>
+    <app-students-detail
+        class="col-50"
+        [student]="selectedStudent$ | async"
+        (save)="onSave($event)"
+        (cancel)="onCancel()">
+    </app-students-detail>
 </div>
