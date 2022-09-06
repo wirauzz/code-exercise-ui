@@ -17,10 +17,19 @@ export const initialState: StudentState = {
     error: '',
     status: 'pending'
 }
+
 export const studentsReducer = createReducer(
     initialState,
     on(StudentActions.loadStudents, (state) => ({ ...state, status: 'loading'})
     ),
+    on(StudentActions.selectStudent, (state, {student}) => ({
+        ...state,
+        activeStudent: student
+    })),
+    on(StudentActions.clearSelectedStudent, (state) => ({
+        ...state,
+        activeStudent: null
+    })),
     on(StudentApiActions.loadStudentsSuccess, (state, { students }) => ({
         ...state,
         students: students,
@@ -31,6 +40,36 @@ export const studentsReducer = createReducer(
         ...state,
         error: errMessage,
         status: 'error',
+    })),
+    on(StudentApiActions.removeStudentSuccess, (state, { studentId }) => ({ 
+        ...state,
+        students: state.students.filter((student) => student.studentId !== studentId),
+    })),
+    on(StudentApiActions.removeStudentFailure, (state, { errMessage }) => ({ 
+        ...state,
+        error: errMessage,
+    })),
+    on(StudentApiActions.editStudentSuccess, (state, {student}) => ({
+        ...state,
+        students: updateStudent(state.students, student),
+        activeStudent: null
+    })),
+    on(StudentApiActions.editStudentFailure, (state, {errMessage}) => ({
+        ...state,
+        error: errMessage,
+        activeStudent: null
+    })),
+    on(StudentApiActions.addStudentSuccess, (state, { student }) => ({
+        ...state,
+        students: [...state.students, { studentId: student.studentId,
+            firstName: student.firstName,
+            lastName: student.lastName }],
+    })),
+    on(StudentApiActions.addStudentFailure, (state, { errMessage }) => ({
+        ...state,
+        error: errMessage,
+        activeStudent: null
+    }))
 )
 export const selectStudents = (state: StudentState) => state.students;
 

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="col-50">
+        <app-courses-table
+        [courses]="courses$"
+        (select)="onSelect($event)"
+        (delete)="onDelete($event)">
+        </app-courses-table>
+    </div>
+    <app-courses-detail
+        class="col-50"
+        [course]="selectedCourse$ | async"
+        (save)="onSave($event)"
+        (cancel)="onCancel()">
+    </app-courses-detail>
+</div>

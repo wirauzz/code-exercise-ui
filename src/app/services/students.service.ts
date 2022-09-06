@@ -19,3 +19,16 @@ export class StudentsService {
   public getStudents() : Observable<APIResponse> {
     return this.http.get<APIResponse>(`${this.studentsAPI}`);
   }
+  
+  public postStudent(newStudent: Student) : Observable<APIResponse> {
+    return this.http.post<APIResponse>(`${this.studentsAPI}`, newStudent);
+  }
+
+  public removeStudent(StudentId: string) : Observable<APIResponse> {
+    return this.http.delete<APIResponse>(`${this.studentsAPI}/${StudentId}`);
+  }
+
+  public putStudent(newStudent: Student, StudentId: string) : Observable<APIResponse> {
+    return this.http.put<APIResponse>(`${this.studentsAPI}/${StudentId}`, newStudent);
+  }
+}
