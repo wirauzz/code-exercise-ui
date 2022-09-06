@@ -41,4 +41,3 @@ import { Student } from "src/app/models/student";
     '[Students api] Add student success',
     props<{student: Student}>()
   );
-  

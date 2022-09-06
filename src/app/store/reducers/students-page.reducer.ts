@@ -18,7 +18,6 @@ export const initialState: StudentState = {
     status: 'pending'
 }
 
-
 export const studentsReducer = createReducer(
     initialState,
     on(StudentActions.loadStudents, (state) => ({ ...state, status: 'loading'})
@@ -72,8 +71,6 @@ export const studentsReducer = createReducer(
         activeStudent: null
     }))
 )
- 
-
 export const selectStudents = (state: StudentState) => state.students;
 
 export const eelectStudents = (state: StudentState) => state.students;
@@ -93,4 +90,3 @@ const updateStudent = (students: Student[], editedStudent: Student) =>
     ? Object.assign({}, student, editedStudent)
     : student
   })
-

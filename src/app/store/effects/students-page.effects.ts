@@ -33,7 +33,7 @@ export class StudentsApiEffects {
             })
         )
     })
-
+    
     createStudent$ = createEffect(() => {
         return this.actions$.pipe(
         ofType(StudentActions.createStudent),
@@ -85,6 +85,5 @@ export class StudentsApiEffects {
                 )
             )
         )
-    )
-    
+    ) 
 }

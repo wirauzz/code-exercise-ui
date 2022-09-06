@@ -19,7 +19,7 @@ export class StudentsService {
   public getStudents() : Observable<APIResponse> {
     return this.http.get<APIResponse>(`${this.studentsAPI}`);
   }
-
+  
   public postStudent(newStudent: Student) : Observable<APIResponse> {
     return this.http.post<APIResponse>(`${this.studentsAPI}`, newStudent);
   }
