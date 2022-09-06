@@ -15,3 +15,8 @@ export const selectAllStudents = createSelector(
   selectStudentState,
   fromStudents.selectStudents
 );
+
+export const selectActiveStudent = createSelector(
+  selectStudentState,
+  fromStudents.selectActiveStudent
+);
