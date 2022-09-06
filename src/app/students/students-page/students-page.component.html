@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="col-50">
+        <app-students-table
+        [students]="students$"
+        (select)="onSelect($event)"
+        (delete)="onDelete($event)">
+        </app-students-table>
+    </div>
+</div>
